@@ -31,6 +31,12 @@ class App < Sinatra::Application
     erb :comment, locals: {message: message}
   end
 
+  get "/view_comments/:id" do
+    message = @database_connection.sql("SELECT * FROM messages WHERE id = #{params[:id]}").first
+    comments = @database_connection.sql("SELECT * FROM comments WHERE message_id = '#{params[:id]}'")
+    erb :view_comments, locals: {message: message, comments: comments}
+  end
+
   patch "/edit/:id" do
     message = params[:message]
     if message.length <= 140

@@ -1,0 +1,6 @@
+<h2>Viewing comments for <%= message["message"] %></h2>
+<% comments.each do |comment| %>
+  <div class="comment">
+    <%= comment["comment"] %>
+  </div>
+<% end %>

@@ -73,7 +73,11 @@ feature "Messages" do
     expect(page).to_not have_content("Hello Everyone!")
   end
 
-  scenario "user can click comment to add a comment which displays below messages" do
+
+end
+
+feature "comments" do
+  before(:each) do
     visit "/"
 
     fill_in "Message", :with => "Hello Everyone!"
@@ -85,6 +89,22 @@ feature "Messages" do
     fill_in "Comment", :with => "Terrible idea!"
 
     click_button "Add Comment"
+  end
+
+  scenario "user can click comment to add a comment which displays below messages" do
     expect(page).to have_content("Terrible idea!")
+  end
+
+  scenario "user can click a message to view all comments on a separate page" do
+    click_link "Comment"
+
+    fill_in "Comment", :with => "Wonderful concept!"
+
+    click_button "Add Comment"
+
+    click_link "Hello Everyone!"
+
+    expect(page).to have_content("Terrible idea!")
+    expect(page).to have_content("Wonderful concept!")
   end
 end
