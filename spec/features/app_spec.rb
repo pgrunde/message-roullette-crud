@@ -23,4 +23,68 @@ feature "Messages" do
 
     expect(page).to have_content("Message must be less than 140 characters.")
   end
+
+  scenario "user sees populated edit form when clicking 'edit'" do
+    visit "/"
+
+    fill_in "Message", :with => "Hello Everyone!"
+
+    click_button "Submit"
+
+    expect(page).to have_content("Hello Everyone!")
+
+    click_link "Edit"
+    expect(page).to have_content("Hello Everyone!")
+  end
+
+  scenario "user can submit an edited message which fails if char leng > 140" do
+    visit "/"
+
+    fill_in "Message", :with => "Hello Everyone!"
+
+    click_button "Submit"
+
+    click_link "Edit"
+
+    fill_in "Message", :with => "Sup people!"
+
+    click_button "Submit"
+
+    expect(page).to have_content("Sup people!")
+
+    click_link "Edit"
+
+    fill_in "Message", :with => "a" * 141
+
+    click_button "Submit"
+
+    expect(page).to have_content("Message must be less than 140 characters.")
+  end
+
+  scenario "user can click delete to remove a message" do
+    visit "/"
+
+    fill_in "Message", :with => "Hello Everyone!"
+
+    click_button "Submit"
+
+    click_button "Delete"
+
+    expect(page).to_not have_content("Hello Everyone!")
+  end
+
+  scenario "user can click comment to add a comment which displays below messages" do
+    visit "/"
+
+    fill_in "Message", :with => "Hello Everyone!"
+
+    click_button "Submit"
+
+    click_link "Comment"
+
+    fill_in "Comment", :with => "Terrible idea!"
+
+    click_button "Add Comment"
+    expect(page).to have_content("Terrible idea!")
+  end
 end

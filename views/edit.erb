@@ -1,0 +1,6 @@
+<form method="post" action="/edit/<%= message["id"] %>">
+  <input type="hidden" name="_method" value="patch"/>
+  <label for="message">Message:</label>
+  <textarea type="text" col="40" row="5" id="message" name="message"><%= message["message"] %></textarea><br>
+  <input type="submit" value="Submit"/>
+</form>
