@@ -1,25 +1,55 @@
 <form method="post" action="/messages">
-  <label for="message">Message:</label>
+  <label for="message">Message:</label><br>
   <textarea type="text" col="40" row="5" id="message" name="message"></textarea><br>
-  <button>Submit</button>
+  <button style="margin-top: 15px;">Submit</button>
 </form>
 
-<% messages.each do |message| %>
+<section class="clearfix">
 
-  <li><a href="/view_comments/<%= message["id"] %>"><%= message["message"] %></a> | <a href="/comment/<%= message["id"]%>">Comment</a> | <a href="/edit/<%= message["id"]%>">Edit</a> |
-    <form method="post" action="/delete/<%= message["id"] %>">
-      <input type="hidden" name="_method" value="delete"/>
-      <input type="submit" value="Delete"/>
-    </form>
-  </li>
-  <p>Comments:</p>
-  <% comments.each do |comment| %>
-    <% if comment["message_id"] == message["id"] %>
-      <div class="comment">
-        <%= comment["comment"] %>
-      </div>
+  <article class="one_third">
+    <h2>Message</h2>
+  </article>
+
+  <article class="one_third">
+    <h2>Options</h2>
+  </article>
+
+  <article class="one_third">
+    <h2>Comments</h2>
+  </article>
+
+</section>
+
+<section class="style_hr" class="clearfix"></section>
+
+<% messages.each do |message| %>
+<section class="clearfix">
+
+  <article id="message_content" class="one_third">
+    <a href="/view_comments/<%= message["id"] %>"><%= message["message"] %></a>
+  </article>
+
+  <article id="message_options" class="one_third">
+    <ul>
+      <li><a href="/comment/<%= message["id"]%>">Comment</a></li>
+      <li><a href="/edit/<%= message["id"]%>">Edit</a></li>
+      <li><form method="post" action="/delete/<%= message["id"] %>">
+        <input type="hidden" name="_method" value="delete"/>
+        <input type="submit" value="Delete"/>
+      </form></li>
+    </ul>
+  </article>
+
+  <article id="message_comments" class="one_third">
+    <% comments.each do |comment| %>
+      <% if comment["message_id"] == message["id"] %>
+        <div class="comment">
+          <%= comment["comment"] %>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
-<hr>
+  </article>
+</section>
+<section class="style_hr" class="clearfix"></section>
 <% end %>
 

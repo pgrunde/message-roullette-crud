@@ -1,9 +1,107 @@
 body {
     text-align: center;
+    font-size:15px;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    padding-left: 0px;
+}
+
+ul li {
+    list-style-type: none;
 }
 
 #message {
     width: 200px;
     height: 50px;
+    border-radius: 5px;
+    background-color: #b1ffc3;
 }
 
+#message_content {
+    height: auto;
+    width: 290px;
+    border-radius: 5px;
+    background-color: #b1ffc3;
+    border: 2px solid black;
+    font-size:25px;
+    padding: 4px;
+    margin-top:15px;
+}
+
+#message_options li {
+    padding-top: 5px;
+}
+
+#message_comments {
+    margin-top:15px;
+}
+
+.comment {
+    margin-top:5px;
+}
+
+.style_hr {
+    border-top:3px solid black;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    height:15px;1
+}
+
+.wrapper {
+    margin:auto;
+    width:980px;
+    background-color:#fff;
+}
+
+/* ----- =columns ----- */
+
+.one_half { 	 width:460px; }
+.one_third {	 width:300px; }
+.two_third {	 width:620px; }
+.one_fourth {	 width:220px; }
+.three_fourth { width:700px; }
+.full_column {	 width:940px; }
+
+.one_half_nm  {width:490px; margin:0;}
+.one_third_nm {width:313px; margin:0;}
+.two_third_nm {width:626px; margin:0;}
+.one_fourth_nm {width:235px; margin:0;}
+.one_eighth_nm {width:122px; margin:0;}
+.three_fourth_nm {width:705px; margin:0;}
+
+
+article {
+    position:relative;
+    margin-left:20px;
+    margin-bottom:16px;
+    float:left;
+}
+
+/* clearfix */
+.clearfix:before,
+.clearfix:after { content: " "; display: table; }
+
+.clearfix:after { clear: both; }
+
+/* * For IE 6/7 only * Include this rule to trigger hasLayout and contain floats. */
+.clearfix { *zoom: 1; }
+
+
+/* DEMO STYLE - Box Outlines  */
+
+/*article {*/
+/*box-sizing:border-box;*/
+/*border: solid #000 1px;*/
+/*padding: 10px;*/
+/*}*/
+
+/*section {*/
+/*box-sizing:border-box;*/
+/*border: solid red 1px;*/
+/*padding: 20px 0 10px 0;*/
+/*}*/

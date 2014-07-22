@@ -18,7 +18,7 @@ class App < Sinatra::Application
     messages = @database_connection.sql("SELECT * FROM messages")
     comments = @database_connection.sql("SELECT * FROM comments")
 
-    erb :home, locals: {messages: messages, comments: comments}
+    erb :home, locals: {messages: messages, comments: comments}, :layout => :layout
   end
 
   get "/edit/:id" do
@@ -28,13 +28,13 @@ class App < Sinatra::Application
 
   get "/comment/:id" do
     message = @database_connection.sql("SELECT * FROM messages WHERE id = #{params[:id]}").first
-    erb :comment, locals: {message: message}
+    erb :comment, locals: {message: message}, :layout => :layout
   end
 
   get "/view_comments/:id" do
     message = @database_connection.sql("SELECT * FROM messages WHERE id = #{params[:id]}").first
     comments = @database_connection.sql("SELECT * FROM comments WHERE message_id = '#{params[:id]}'")
-    erb :view_comments, locals: {message: message, comments: comments}
+    erb :view_comments, locals: {message: message, comments: comments}, :layout => :layout
   end
 
   patch "/edit/:id" do
@@ -55,7 +55,7 @@ class App < Sinatra::Application
   end
 
   post "/messages" do
-    message = params[:message]
+    message = params[:message].gsub("'","''")
     if message.length <= 140
       @database_connection.sql("INSERT INTO messages (message) VALUES ('#{message}')")
     else

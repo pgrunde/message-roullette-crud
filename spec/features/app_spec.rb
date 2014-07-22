@@ -73,7 +73,15 @@ feature "Messages" do
     expect(page).to_not have_content("Hello Everyone!")
   end
 
+  scenario "user enters a message with a single quote and sql still works" do
+    visit "/"
 
+    fill_in "Message", :with => "We've got the smarts!"
+
+    click_button "Submit"
+
+    expect(page).to have_content("We've got the smarts!")
+  end
 end
 
 feature "comments" do
